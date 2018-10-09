@@ -66,18 +66,18 @@ function system(du, u, p, t)
 
 # DYNAMIC
     # rho
-    du[1]= u[1]* (f_upsilon-tau_m*(f_m*(u[3])-1))
+    du[1]= u[1]* (f_upsilon-tau_m*(f_m*(u[3]+gamma_m*u[1])-1))
     # kappa
     du[2]= u[2]* (sigma_m*f_tau_m-u[2]*sigma_e*f_tau_e-delta_m+delta_e)
     # omega
     du[3]= u[3]* (f_phi+gamma*i-alpha-tau_m*(f_m*(u[3]+gamma_m*u[1]))-1)
     # debt
-    du[4]= -u[4]* (eta_c*(f_m*(u[3]+u[1]*gamma_m)-1)+delta_m*f_tau_m-delta_m)+
-                    (delta_m*f_tau_m-pi_m)
+    du[4]= -u[4]* (eta_m*(f_m*(u[3]+gamma_m*u[1])-1)+sigma_m*f_tau_m-delta_m)+
+                (sigma_m*f_tau_m-pi_m)
     # lambda
     du[5]= u[5]* ((((sigma_e*sigma_m)/(sigma_m*u[2]+sigma_e*f_u*phi))*
-                  (((1/sigma_e)*u[2]*(sigma_m*f_tau_m-delta_m))+
-                   ((1/sigma_m)*f_u*phi*tau_e*(f_e*q_e-1)))) -alpha -beta)
+              (((1/sigma_e)*u[2]*(sigma_m*f_tau_m-delta_m))+
+               ((1/sigma_m)*f_u*phi*tau_e*(f_e*q_e-1)))) -alpha -beta)
 
  end
 
